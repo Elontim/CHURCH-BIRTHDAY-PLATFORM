@@ -265,3 +265,51 @@ input:focus, textarea:focus { outline: 0; border-color: var(--forest-light); box
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+select { width: 100%; border: 1px solid var(--border); border-radius: 13px; color: var(--text); background: var(--surface); padding: 13px 15px; }
+.statusBadge { display: inline-flex; align-items: center; justify-content: center; padding: 6px 10px; border-radius: 999px; font-size: .7rem; font-weight: 700; text-transform: capitalize; }
+.statusBadge.pending { color: #805e0a; background: #fff4d2; }
+.statusBadge.active { color: #176247; background: #e5f5ed; }
+.statusBadge.suspended { color: #8c2e2e; background: #fff0f0; }
+.memberAdminTable { overflow: hidden; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); }
+.memberAdminTable > button { width: 100%; display: grid; grid-template-columns: auto minmax(0,1fr) auto auto; align-items: center; gap: 14px; padding: 15px 18px; border: 0; border-bottom: 1px solid var(--border); color: var(--text); background: transparent; text-align: left; cursor: pointer; }
+.memberAdminTable > button:last-child { border-bottom: 0; }
+.memberAdminTable > button:hover { background: var(--surface-soft); }
+.memberAdminTable > button > span:nth-child(2) { min-width: 0; display: grid; gap: 3px; }
+.memberAdminTable small { color: var(--muted); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.modalBackdrop { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 20px; background: rgba(7, 18, 13, .62); backdrop-filter: blur(8px); }
+.roleModal { width: min(100%, 640px); max-height: min(820px, 90vh); overflow: auto; padding: 28px; border: 1px solid var(--border); border-radius: 26px; background: var(--surface); box-shadow: var(--shadow); }
+.roleModal header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; padding-bottom: 22px; }
+.roleModal header h2 { margin: 7px 0 5px; }
+.roleModal header p { color: var(--muted); margin: 0; }
+.grantAllButton { width: 100%; display: flex; align-items: center; gap: 14px; padding: 17px; border: 1px solid rgba(209,169,80,.45); border-radius: 17px; color: #473711; background: #f8e8bd; cursor: pointer; text-align: left; }
+.grantAllButton > span { flex: 1; display: grid; gap: 4px; }
+.grantAllButton small { color: #765e23; }
+.roleChoices { display: grid; gap: 9px; margin-top: 18px; }
+.roleChoices label { display: flex; align-items: flex-start; gap: 13px; padding: 14px; border: 1px solid var(--border); border-radius: 15px; cursor: pointer; }
+.roleChoices input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--forest-light); }
+.roleChoices label > span { display: grid; gap: 4px; }
+.roleChoices small { color: var(--muted); line-height: 1.45; }
+.roleModal footer { display: flex; justify-content: flex-end; gap: 10px; padding-top: 22px; }
+.dangerButton { min-height: 46px; padding: 0 18px; border: 0; border-radius: 14px; color: #8c2e2e; background: #fff0f0; font-weight: 700; cursor: pointer; }
+.eventGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+.eventGrid article { min-width: 0; display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 18px; padding: 22px; border: 1px solid var(--border); border-radius: 21px; background: var(--surface); }
+.eventDate { width: 66px; height: 72px; display: grid; place-items: center; align-content: center; border-radius: 17px; color: #fff; background: var(--forest); }
+.eventDate strong { font-family: "Fraunces"; font-size: 1.55rem; line-height: 1; }
+.eventDate span { margin-top: 5px; font-size: .72rem; text-transform: uppercase; }
+.eventGrid h3 { margin: 7px 0; font-size: 1.12rem; }
+.eventGrid p { color: var(--muted); line-height: 1.55; }
+.visibilityPill { color: var(--forest-light); font-size: .68rem; font-weight: 700; text-transform: uppercase; }
+.eventMeta { display: flex; flex-wrap: wrap; gap: 13px; color: var(--muted); font-size: .78rem; }
+.eventMeta span { display: flex; align-items: center; gap: 6px; }
+.eventMeta svg { width: 15px; }
+.eventModal { width: min(100%, 760px); }
+@media (max-width: 760px) {
+  .eventGrid { grid-template-columns: 1fr; }
+  .memberAdminTable > button { grid-template-columns: auto minmax(0,1fr) auto; }
+  .memberAdminTable > button > svg { display: none; }
+  .registrationList article .softButton, .registrationList article .primaryButton { flex: 1; }
+  .roleModal { padding: 21px; border-radius: 21px; }
+  .roleModal footer { flex-direction: column; }
+  .roleModal footer button { width: 100%; }
+}
