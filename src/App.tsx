@@ -8,13 +8,16 @@ import {
 import type { Session } from "@supabase/supabase-js";
 import { friendlyError, isSupabaseConfigured, supabase } from "./lib/supabase";
 import type { Birthday, Notice, Profile, RoleName } from "./types";
+import ManagementAdminPanel from "./components/AdminPanel";
+import EventsPanel from "./components/EventsPanel";
 
-type View = "home" | "birthdays" | "members" | "messages" | "admin" | "profile";
+type View = "home" | "birthdays" | "events" | "members" | "messages" | "admin" | "profile";
 type AuthMode = "login" | "register" | "forgot";
 
 const nav: { id: View; label: string; icon: typeof Home; protected?: boolean }[] = [
   { id: "home", label: "Home", icon: Home },
   { id: "birthdays", label: "Birthdays", icon: Gift },
+  { id: "events", label: "Events", icon: CalendarDays },
   { id: "members", label: "Members", icon: Users },
   { id: "messages", label: "Messages", icon: MessageCircle },
   { id: "admin", label: "Admin", icon: ShieldCheck, protected: true },
@@ -275,9 +278,10 @@ function Dashboard({ session }: { session: Session }) {
         {loading ? <div className="loadingState"><LoaderCircle className="spin" /><p>Preparing your community</p></div> :
         view === "home" ? <><Welcome profile={profile} birthdays={birthdays} /><BirthdayList birthdays={birthdays} /><QuickActions isAdmin={isAdmin} /></> :
         view === "birthdays" ? <PageIntro eyebrow="Birthday ministry" title="Make every celebration meaningful" text="See upcoming birthdays, prepare greetings, and create beautiful celebration moments." children={<BirthdayList birthdays={birthdays} />} /> :
+        view === "events" ? <EventsPanel canManage={roles.some(role => ["general_admin", "admin", "event_manager"].includes(role))} /> :
         view === "members" ? <MembersPanel /> :
         view === "messages" ? <MessagesPanel notices={notices} /> :
-        view === "admin" ? <AdminPanel /> :
+        view === "admin" ? <ManagementAdminPanel /> :
         <ProfilePanel profile={profile} onSaved={setProfile} />}
       </div>
     </main>
